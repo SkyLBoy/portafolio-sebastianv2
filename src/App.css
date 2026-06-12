@@ -1,0 +1,6 @@
+/* App-specific styles - reset, only used where Tailwind doesn't reach */
+.App {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
