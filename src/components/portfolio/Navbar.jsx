@@ -96,6 +96,7 @@ const Navbar = () => {
           <a
             href={PERSONAL.cvUrl}
             target="_blank"
+            download="cv-sebastian-calderon.pdf"
             rel="noopener noreferrer"
             data-testid="navbar-cv-btn"
             className="hidden md:inline-flex items-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-4 py-2 text-sm font-medium transition-colors"
@@ -107,6 +108,7 @@ const Navbar = () => {
           <button
             onClick={() => setOpen((v) => !v)}
             data-testid="mobile-menu-toggle"
+            download="cv-sebastian-calderon.pdf"
             className="lg:hidden inline-flex items-center justify-center w-10 h-10 border border-[var(--border)] text-[var(--text-secondary)]"
             aria-label="Toggle menu"
           >

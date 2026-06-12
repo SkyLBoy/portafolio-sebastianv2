@@ -125,6 +125,7 @@ const Contact = () => {
               <a
                 href={PERSONAL.cvUrl}
                 target="_blank"
+                download="cv-sebastian-calderon.pdf"
                 rel="noopener noreferrer"
                 data-testid="contact-cv-btn"
                 className="btn-secondary"
