@@ -19,6 +19,15 @@
     --grid-line: rgba(15, 23, 42, 0.05);
     --nav-bg: rgba(250, 250, 250, 0.45);
     --project-label-bg: rgba(250, 250, 250, 0.85);
+    --status-start: #0055ff;
+    --status-end: #003cae;
+    --panel-top: #ffffff;
+    --panel-bottom: #f9fbff;
+    --panel-border: #dfe6f0;
+    --panel-border-hover: #a5bce8;
+    --panel-highlight: rgba(255, 255, 255, 0.9);
+    --panel-shadow: 0 6px 24px rgba(15, 23, 42, 0.035);
+    --panel-shadow-hover: 0 12px 32px rgba(15, 23, 42, 0.075);
 
     /* shadcn vars (kept for compatibility) */
     --background: 0 0% 98%;
@@ -56,7 +65,16 @@
     --accent-soft: rgba(59, 130, 246, 0.12);
     --grid-line: rgba(248, 250, 252, 0.04);
     --nav-bg: rgba(5, 5, 5, 0.45);
-    --project-label-bg: rgba(5, 5, 5, 0.85); 
+    --project-label-bg: rgba(5, 5, 5, 0.85);
+    --status-start: #17468f;
+    --status-end: #12315f;
+    --panel-top: #15191f;
+    --panel-bottom: #101215;
+    --panel-border: #29313b;
+    --panel-border-hover: #435e83;
+    --panel-highlight: rgba(255, 255, 255, 0.045);
+    --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    --panel-shadow-hover: 0 14px 36px rgba(0, 0, 0, 0.22);
 
     --background: 0 0% 2%;
     --foreground: 210 40% 98%;
@@ -159,6 +177,7 @@
     font-weight: 500;
     font-size: 0.95rem;
     border: 1px solid var(--accent);
+    border-radius: 10px;
     transition: all 0.2s ease;
     cursor: pointer;
   }
@@ -178,6 +197,7 @@
     font-weight: 500;
     font-size: 0.95rem;
     border: 1px solid var(--border-strong);
+    border-radius: 10px;
     transition: all 0.2s ease;
     cursor: pointer;
   }
@@ -188,14 +208,83 @@
   }
 
   .card-tech {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    transition: border-color 0.25s ease, transform 0.25s ease,
-      box-shadow 0.25s ease;
+    position: relative;
+    min-width: 0;
+    border-radius: 20px;
+    background-color: var(--surface);
+    background-image: linear-gradient(145deg, var(--panel-top), var(--panel-bottom));
+    border: 1px solid var(--panel-border);
+    box-shadow: inset 0 1px 0 var(--panel-highlight), var(--panel-shadow);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
   }
-  .card-tech:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
+
+  .card-tech:focus-within {
+    border-color: var(--panel-border-hover);
+  }
+
+  .card-featured {
+    background-image: linear-gradient(145deg, var(--accent-soft), transparent 65%),
+      linear-gradient(145deg, var(--panel-top), var(--panel-bottom));
+    border-color: var(--panel-border-hover);
+  }
+
+  .card-featured::before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    top: -1px;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .card-project {
+    isolation: isolate;
+  }
+
+  .card-stat {
+    padding: 1.5rem;
+    border-radius: 14px;
+  }
+
+  .card-link {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .card-status {
+    background: linear-gradient(135deg, var(--status-start), var(--status-end));
+    border-color: transparent;
+    color: #ffffff;
+  }
+
+  .card-status p {
+    color: inherit;
+  }
+
+  .card-icon {
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .experience-details summary {
+    border-radius: 10px;
+    padding: 0.65rem 0.8rem;
+    background: var(--accent-soft);
+  }
+
+  @media (hover: hover) {
+    .card-tech:not(.card-status):hover {
+      border-color: var(--panel-border-hover);
+      box-shadow: inset 0 1px 0 var(--panel-highlight), var(--panel-shadow-hover);
+    }
+
+    .card-link:hover {
+      transform: translateY(-3px);
+    }
   }
 
   .chip {
@@ -208,8 +297,8 @@
     border: 1px solid var(--border);
     background: var(--surface-alt);
     color: var(--text-secondary);
-    border-radius: 999px;
-    transition: all 0.2s ease;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
   }
   .chip:hover {
     border-color: var(--accent);
@@ -253,6 +342,9 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .card-link:hover {
+    transform: none;
   }
   *,
   *::before,

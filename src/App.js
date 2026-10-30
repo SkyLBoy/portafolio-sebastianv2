@@ -6,13 +6,9 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Navbar from "@/components/portfolio/Navbar";
 import Hero from "@/components/portfolio/Hero";
 import About from "@/components/portfolio/About";
-import Specializations from "@/components/portfolio/Specializations";
 import Skills from "@/components/portfolio/Skills";
 import Projects from "@/components/portfolio/Projects";
 import Experience from "@/components/portfolio/Experience";
-import Achievements from "@/components/portfolio/Achievements";
-import TechStack from "@/components/portfolio/TechStack";
-import Value from "@/components/portfolio/Value";
 import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 
@@ -26,13 +22,9 @@ function App() {
             <main>
               <Hero />
               <About />
-              <Specializations />
-              <Skills />
-              <Projects />
               <Experience />
-              <Achievements />
-              <TechStack />
-              <Value />
+              <Projects />
+              <Skills />
               <Contact />
             </main>
             <Footer />

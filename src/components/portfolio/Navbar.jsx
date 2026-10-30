@@ -34,10 +34,9 @@ const Navbar = () => {
 
   const links = [
     { id: "about", label: t("nav.about") },
-    { id: "spec", label: t("nav.specializations") },
-    { id: "skills", label: t("nav.skills") },
-    { id: "projects", label: t("nav.projects") },
     { id: "experience", label: t("nav.experience") },
+    { id: "projects", label: t("nav.projects") },
+    { id: "skills", label: t("nav.specializations") },
     { id: "contact", label: t("nav.contact") },
   ];
 

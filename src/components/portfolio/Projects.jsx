@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Target, Sparkles, ListChecks, Code2 } from "lucide-react";
+import { Target, Sparkles, ListChecks, Code2, ExternalLink, Github } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { SectionHeader } from "./About";
 import { PROJECT_MOCKS } from "./ProjectMocks";
@@ -28,6 +28,7 @@ const Projects = () => {
             list.map((p, i) => {
               const Mock = PROJECT_MOCKS[i];
               const reverse = i % 2 === 1;
+              const Preview = p.website ? "a" : "div";
               return (
                 <motion.article
                   key={i}
@@ -36,9 +37,15 @@ const Projects = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.6 }}
-                  className="grid lg:grid-cols-12 gap-0 border border-[var(--border)] bg-[var(--bg)] overflow-hidden group hover:border-[var(--accent)] transition-colors"
+                  className="card-tech card-project grid lg:grid-cols-12 gap-0 overflow-hidden group"
                 >
-                  <div
+                  <Preview
+                    {...(p.website ? {
+                      href: p.website,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      "aria-label": `${labels.visitWebsite}: ${p.name}`,
+                    } : {})}
                     className={`lg:col-span-6 relative ${
                       reverse ? "lg:order-2" : "lg:order-1"
                     } aspect-[16/11] lg:aspect-auto bg-[var(--surface-alt)] border-b lg:border-b-0 ${
@@ -46,11 +53,11 @@ const Projects = () => {
                     } border-[var(--border)] overflow-hidden`}
                   >
                     {Mock ? <Mock /> : null}
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-2.5 py-1 bg-[var(--project-label-bg)] backdrop-blur border border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 bg-[var(--project-label-bg)] backdrop-blur border border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
                       <span className="w-1.5 h-1.5 bg-[var(--accent)]" />
                       {labels.project} · {String(i + 1).padStart(2, "0")} / {list.length}
                     </div>
-                  </div>
+                  </Preview>
 
                   <div
                     className={`lg:col-span-6 ${
@@ -59,11 +66,33 @@ const Projects = () => {
                   >
                     <p className="overline mb-3">{p.subtitle}</p>
                     <h3 className="font-heading font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight mb-4 tracking-tight">
-                      {p.name}
+                      {p.website ? (
+                        <a href={p.website} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">
+                          {p.name}
+                        </a>
+                      ) : p.name}
                     </h3>
                     <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
                       {p.desc}
                     </p>
+
+                    {p.website && (
+                      <div className="flex flex-wrap gap-3 mb-6">
+                        <a href={p.website} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                          <ExternalLink size={16} aria-hidden="true" /> vincco.com
+                        </a>
+                        {p.alternateWebsite && (
+                          <a href={p.alternateWebsite} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                            <ExternalLink size={16} aria-hidden="true" /> vincco.mx
+                          </a>
+                        )}
+                        {p.repository && (
+                          <a href={p.repository} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                            <Github size={16} aria-hidden="true" /> {labels.repository}
+                          </a>
+                        )}
+                      </div>
+                    )}
 
                     <div className="mb-6">
                       <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)] flex items-center gap-2 mb-2">
@@ -73,7 +102,7 @@ const Projects = () => {
                         {p.tech.map((tt, j) => (
                           <span
                             key={j}
-                            className="font-mono text-[11px] px-2 py-1 bg-[var(--surface-alt)] border border-[var(--border)] text-[var(--text-primary)]"
+                            className="font-mono text-[11px] rounded-md px-2 py-1 bg-[var(--surface-alt)] border border-[var(--border)] text-[var(--text-primary)]"
                           >
                             {tt}
                           </span>

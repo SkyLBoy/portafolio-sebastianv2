@@ -43,6 +43,7 @@ const About = () => {
   const { t } = useLang();
   const stats = t("about.stats");
   const facts = t("about.facts");
+  const strengths = t("about.strengths");
 
   return (
     <section id="about" data-testid="about-section" className="section-y relative">
@@ -65,7 +66,16 @@ const About = () => {
               {t("about.paragraph")}
             </motion.p>
 
-            <div className="grid grid-cols-2 gap-px bg-[var(--border)]">
+            <ul className="space-y-3 mb-10 text-sm text-[var(--text-secondary)]">
+              {Array.isArray(strengths) && strengths.map(point => (
+                <li key={point} className="flex items-start gap-3">
+                  <span aria-hidden="true" className="text-[var(--accent)]">→</span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               {Array.isArray(stats) &&
                 stats.map((s, i) => (
                   <motion.div
@@ -75,7 +85,7 @@ const About = () => {
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5, delay: i * 0.05 }}
                     data-testid={`about-stat-${i}`}
-                    className="bg-[var(--surface)] p-6"
+                    className="card-tech card-stat"
                   >
                     <p className="font-heading font-bold text-3xl md:text-4xl text-[var(--text-primary)] mb-1">
                       {s.value}

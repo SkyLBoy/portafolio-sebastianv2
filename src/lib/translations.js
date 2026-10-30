@@ -2,7 +2,7 @@ export const translations = {
   es: {
     nav: {
       about: "Sobre mí",
-      specializations: "Especialización",
+      specializations: "Especialidades",
       skills: "Habilidades",
       projects: "Proyectos",
       experience: "Experiencia",
@@ -24,7 +24,7 @@ export const translations = {
       tagline:
         "Desarrollo de Software · Redes Empresariales · Automatización · Infraestructura TI · Documentación Técnica",
       description:
-        "Profesional de Tecnologías de la Información con experiencia en desarrollo de software, administración de infraestructura tecnológica, redes empresariales, automatización de procesos y documentación técnica. Especializado en crear soluciones empresariales, optimizar procesos y resolver problemas tecnológicos complejos.",
+        "Me dedico principalmente a redes e infraestructura empresarial. Combino ingeniería de software y automatización para resolver problemas operativos y mejorar procesos.",
       ctaCV: "Descargar CV",
       ctaContact: "Contactar",
       copyError: "No se puede copiar . Selecciona el correo y cópialo manualmente.",
@@ -37,14 +37,15 @@ export const translations = {
     about: {
       overline: "01 · Perfil profesional",
       title: "Sobre mí",
+      strengths: ["Experiencia combinada en desarrollo de software e infraestructura.", "Documentación técnica y transferencia de conocimiento.", "Resolución de problemas con enfoque en la operación y el usuario."],
       lead:
         "Ingeniero en Software con experiencia práctica en infraestructura tecnológica, desarrollo de software, redes empresariales, automatización de procesos y documentación técnica.",
       paragraph:
         "He participado en proyectos empresariales relacionados con desarrollo web, sistemas de inventario, administración de infraestructura tecnológica, automatización documental y soporte especializado. Me apasiona la tecnología, la resolución de problemas y la mejora continua mediante herramientas innovadoras.",
       stats: [
-        { value: "1+", label: "Años de experiencia profesional" },
-        { value: "5+", label: "Proyectos empresariales entregados" },
-        { value: "2", label: "Empresas: pública y privada" },
+        { value: "2+", label: "Años de experiencia profesional" },
+        { value: "10+", label: "Proyectos empresariales entregados" },
+        { value: "3", label: "Empresas: pública y privada" },
         { value: "B2", label: "Inglés (Intermedio)" },
       ],
       facts: {
@@ -92,10 +93,11 @@ export const translations = {
       ],
     },
     skills: {
-      overline: "03 · Stack técnico",
-      title: "Habilidades técnicas",
+      overline: "04 · Especialidades",
+      title: "Especialidades y tecnologías",
+      descriptions: ["Configuración, administración y diagnóstico de redes empresariales e infraestructura.", "Scripts y herramientas para reducir tareas manuales y estandarizar procesos.", "Análisis, desarrollo y mantenimiento de soluciones para procesos internos.", "Modelado, consultas y administración de datos para aplicaciones empresariales.", "Manuales, diagramas y procedimientos que facilitan la operación y el soporte.", "Trabajo organizado, validación funcional y resolución de incidentes."],
       lead:
-        "Conjunto de tecnologías que utilizo en proyectos empresariales reales",
+        "Redes e infraestructura como enfoque principal, complementadas por desarrollo, automatización y documentación técnica.",
       groups: [
         {
           name: "Infraestructura",
@@ -144,12 +146,14 @@ export const translations = {
       ],
     },
     projects: {
-      overline: "04 · Casos de aplicación",
+      overline: "03 · Proyectos",
       title: "Proyectos empresariales",
       lead:
         "Soluciones reales entregadas en entornos productivos: desarrollo web corporativo, sistemas de inventario y automatización documental.",
       labels: {
         project: "Proyecto",
+        visitWebsite: "Visitar sitio",
+        repository: "Ver código",
         tech: "Tecnologías",
         features: "Funcionalidades",
         problem: "Problema resuelto",
@@ -158,6 +162,9 @@ export const translations = {
       list: [
         {
           name: "Página Web Corporativa Vincco",
+          website: "https://vincco.com/",
+          alternateWebsite: "https://vincco.mx/",
+          repository: "https://github.com/SkyLBoy/Vincco_pagina_actu-main",
           subtitle: "Centro de Contacto",
           desc: "Diseño y desarrollo de sitio web corporativo enfocado en fortalecer la presencia digital de la empresa y mejorar su imagen institucional.",
           tech: ["HTML", "CSS", "JavaScript","React"],
@@ -239,18 +246,25 @@ export const translations = {
       ],
     },
     experience: {
-      overline: "05 · Trayectoria",
+      overline: "02 · Trayectoria",
       title: "Experiencia profesional",
       lead:
         "Recorrido en empresas públicas y privadas, combinando desarrollo de software y operación de infraestructura tecnológica.",
       present: "Actualidad",
       currentJob: "Trabajo actual",
+      focusLabel: "Áreas de enfoque",
       achievementsLabel: "Responsabilidades & logros",
       jobs: [
         {
           current: true,
           role: "Ingeniero de Tecnología de Software",
+          responsibilityGroups: [
+            { title: "Redes e infraestructura", icon: "network", indices: [0, 1, 2, 3] },
+            { title: "Software y automatización", icon: "code", indices: [4, 5, 6, 7] },
+          ],
+          tags: ["Redes empresariales", "VLANs", "Python", "PowerShell"],
           company: "Interlogic Global",
+          logo: "/assets/interlogic-logo-transparent.png",
           period: "Octubre 2026 — Actualidad",
           icon: "code",
           achievements: [
@@ -267,6 +281,8 @@ export const translations = {
         {
           role: "Ingeniero Avanzado de Soporte Técnico",
           company: "Vincco - CT Internacional",
+          logo: "/assets/logo-ct.png",
+          secondaryLogo: "/assets/logo_grande_vincco.png",
           period: "Mayo 2025 — Octubre 2026",
           location: "Hermosillo, Sonora",
           icon: "server",
@@ -280,6 +296,7 @@ export const translations = {
         {
           role: "Encargado del Área de IT",
           company: "Vincco",
+          logo: "/assets/logo_grande_vincco.png",
           period: "2025",
           location: "Hermosillo, Sonora",
           icon: "network",
@@ -350,7 +367,7 @@ export const translations = {
       ],
     },
     contact: {
-      overline: "09 · Contacto",
+      overline: "05 · Contacto",
       title: "Conversemos",
       lead:
         "Disponible para oportunidades de TI de nivel intermedio y avanzado, tanto presenciales como remotas.",
@@ -395,7 +412,7 @@ export const translations = {
       tagline:
         "Software Development · Enterprise Networks · Automation · IT Infrastructure · Technical Documentation",
       description:
-        "IT professional with hands-on experience in software development, IT infrastructure management, enterprise networks, process automation and technical documentation. Specialized in delivering enterprise solutions, optimizing processes and solving complex technology problems.",
+        "My main focus is enterprise networks and infrastructure. I combine software engineering and automation to solve operational problems and improve processes.",
       ctaCV: "Download CV",
       ctaContact: "Get in touch",
       ctaProjects: "View projects",
@@ -407,14 +424,15 @@ export const translations = {
     about: {
       overline: "01 · Professional profile",
       title: "About me",
+      strengths: ["Combined experience in software development and infrastructure.", "Technical documentation and knowledge transfer.", "Problem solving focused on operations and end users."],
       lead:
         "Software Engineer with hands-on experience in IT infrastructure, software development, enterprise networks, process automation and technical documentation.",
       paragraph:
         "I have contributed to enterprise projects related to web development, inventory systems, IT infrastructure administration, documentation automation and specialized support. I'm passionate about technology, problem solving and continuous improvement through innovative tools.",
       stats: [
-        { value: "1+", label: "Years of professional experience" },
-        { value: "5+", label: "Enterprise projects delivered" },
-        { value: "2", label: "Companies: public and private" },
+        { value: "2+", label: "Years of professional experience" },
+        { value: "10+", label: "Enterprise projects delivered" },
+        { value: "3", label: "Companies: public and private" },
         { value: "B2", label: "English (Intermediate)" },
       ],
       facts: {
@@ -462,10 +480,11 @@ export const translations = {
       ],
     },
     skills: {
-      overline: "03 · Technical stack",
-      title: "Technical skills",
+      overline: "04 · Specializations",
+      title: "Specializations and technologies",
+      descriptions: ["Configuration, administration and troubleshooting of enterprise networks and infrastructure.", "Scripts and tools to reduce manual work and standardize processes.", "Analysis, development and maintenance of solutions for internal processes.", "Data modeling, queries and administration for enterprise applications.", "Manuals, diagrams and procedures that support operations and troubleshooting.", "Organized delivery, functional validation and incident resolution."],
       lead:
-        "Technologies I use in real enterprise projects — no fake progress bars, no invented percentages.",
+        "Networks and infrastructure as my main focus, complemented by development, automation and technical documentation.",
       groups: [
         {
           name: "Infrastructure",
@@ -514,12 +533,14 @@ export const translations = {
       ],
     },
     projects: {
-      overline: "04 · Application cases",
+      overline: "03 · Projects",
       title: "Enterprise projects",
       lead:
         "Real solutions delivered in production environments: corporate web development, inventory systems and document automation.",
       labels: {
         project: "Project",
+        visitWebsite: "Visit website",
+        repository: "View code",
         tech: "Stack",
         features: "Features",
         problem: "Problem solved",
@@ -528,6 +549,9 @@ export const translations = {
       list: [
         {
           name: "Vincco Corporate Website",
+          website: "https://vincco.com/",
+          alternateWebsite: "https://vincco.mx/",
+          repository: "https://github.com/SkyLBoy/Vincco_pagina_actu-main",
           subtitle: "Contact Center",
           desc: "Design and development of a corporate website focused on strengthening the company's digital presence and improving its institutional image.",
           tech: ["HTML", "CSS", "JavaScript"],
@@ -609,18 +633,25 @@ export const translations = {
       ],
     },
     experience: {
-      overline: "05 · Background",
+      overline: "02 · Background",
       title: "Professional experience",
       lead:
         "Path through public and private companies, combining software development with IT infrastructure operations.",
       present: "Present",
       currentJob: "Current role",
+      focusLabel: "Focus areas",
       achievementsLabel: "Responsibilities & achievements",
       jobs: [
         {
           current: true,
           role: "Software Technology Engineer",
+          responsibilityGroups: [
+            { title: "Networks and infrastructure", icon: "network", indices: [0, 1, 2, 3] },
+            { title: "Software and automation", icon: "code", indices: [4, 5, 6, 7] },
+          ],
+          tags: ["Enterprise networks", "VLANs", "Python", "PowerShell"],
           company: "Interlogic Global",
+          logo: "/assets/interlogic-logo-transparent.png",
           period: "October 2026 — Present",
           icon: "code",
           achievements: [
@@ -637,6 +668,8 @@ export const translations = {
         {
           role: "Advanced Technical Support Engineer",
           company: "CT Internacional",
+          logo: "/assets/logo-ct.png",
+          secondaryLogo: "/assets/logo_grande_vincco.png",
           period: "May 2025 — October 2026",
           location: "Hermosillo, Sonora",
           icon: "server",
@@ -650,6 +683,7 @@ export const translations = {
         {
           role: "IT Lead",
           company: "Vincco",
+          logo: "/assets/logo_grande_vincco.png",
           period: "2025",
           location: "Hermosillo, Sonora",
           icon: "network",
@@ -720,7 +754,7 @@ export const translations = {
       ],
     },
     contact: {
-      overline: "09 · Contact",
+      overline: "05 · Contact",
       title: "Let's talk",
       lead:
         "Available for mid and senior IT opportunities, both on-site and remote.",

@@ -1,13 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Download, Mail, ArrowDown, MapPin, Circle } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { PERSONAL } from "@/lib/personal";
 
+const LAST_NAME = PERSONAL.name.slice(PERSONAL.shortName.length).trim();
+
 const Hero = () => {
   const { t } = useLang();
 
   const reducedMotion = useReducedMotion();
+  const [typedLastName, setTypedLastName] = useState("");
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    let timer;
+    let length = 0;
+    let deleting = false;
+    setTypedLastName("");
+
+    const tick = () => {
+      length += deleting ? -1 : 1;
+      setTypedLastName(LAST_NAME.slice(0, length));
+
+      let delay = deleting ? 65 : 110;
+      if (length === LAST_NAME.length) {
+        deleting = true;
+        delay = 2200;
+      } else if (length === 0) {
+        deleting = false;
+        delay = 1000;
+      }
+
+      timer = window.setTimeout(tick, delay);
+    };
+
+    timer = window.setTimeout(tick, 900);
+    return () => window.clearTimeout(timer);
+  }, [reducedMotion]);
 
   const go = (id) => {
     const el = document.getElementById(id);
@@ -33,14 +64,14 @@ const Hero = () => {
 
       <div className="container-x relative w-full grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         {/* LEFT — text */}
-        <div className="lg:col-span-7 order-2 lg:order-1">
+        <div className="lg:col-span-7 order-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="flex items-center gap-2 mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 border border-[var(--border)] bg-[var(--surface)] text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+            <span className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 border border-[var(--border)] bg-[var(--surface)] text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)]">
               <Circle
                 size={8}
                 className="fill-emerald-500 text-emerald-500 node-pulse"
@@ -68,10 +99,17 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-heading font-bold text-[var(--text-primary)] text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tighter mb-6"
           >
-            {t("hero.greeting")}{" "}
-            <span className="block sm:inline">
-              <span className="text-[var(--accent)] cursor-blink">
+            <span className="sr-only">{t("hero.greeting")} {PERSONAL.name}</span>
+            <span aria-hidden="true">
+              {t("hero.greeting")}{" "}
+              <span className="block sm:inline text-[var(--accent)]">
                 {t("hero.name")}
+              </span>
+              <span className="grid mt-2 text-[0.55em] leading-[1.3] tracking-tight text-[var(--accent)]">
+                <span className="invisible col-start-1 row-start-1 select-none">{LAST_NAME}_</span>
+                <span className="col-start-1 row-start-1">
+                  <span className="cursor-blink">{reducedMotion ? LAST_NAME : typedLastName}</span>
+                </span>
               </span>
             </span>
           </motion.h1>
@@ -109,17 +147,15 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap items-center gap-3"
           >
-            <a
-              href={PERSONAL.cvUrl}
-              target="_blank"
-              download="cv-sebastian-calderon.pdf"
-              rel="noopener noreferrer"
-              data-testid="hero-cv-btn"
+            <button
+              onClick={() => go("projects")}
+              data-testid="hero-projects-btn"
               className="btn-primary"
             >
-              <Download size={16} />
-              {t("hero.ctaCV")}
-            </a>
+              <ArrowDown size={16} />
+              {t("hero.ctaProjects")}
+            </button>
+
             <button
               onClick={() => go("contact")}
               data-testid="hero-contact-btn"
@@ -128,14 +164,18 @@ const Hero = () => {
               <Mail size={16} />
               {t("hero.ctaContact")}
             </button>
-            <button
-              onClick={() => go("projects")}
-              data-testid="hero-projects-btn"
+
+            <a
+              href={PERSONAL.cvUrl}
+              target="_blank"
+              download="cv-sebastian-calderon.pdf"
+              rel="noopener noreferrer"
+              data-testid="hero-cv-btn"
               className="btn-secondary"
             >
-              <ArrowDown size={16} />
-              {t("hero.ctaProjects")}
-            </button>
+              <Download size={16} />
+              {t("hero.ctaCV")}
+            </a>
           </motion.div>
 
           <motion.div
@@ -154,7 +194,7 @@ const Hero = () => {
         </div>
 
         {/* RIGHT — photo + tech frame */}
-        <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end">
+        <div className="lg:col-span-5 order-2 flex justify-center lg:justify-end">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -168,7 +208,7 @@ const Hero = () => {
             <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-[var(--accent)] z-10" />
 
             {/* Photo */}
-            <div className="relative aspect-square bg-[var(--surface-alt)] border border-[var(--border)] overflow-hidden">
+            <div className="relative aspect-square rounded-2xl bg-[var(--surface-alt)] border border-[var(--border)] overflow-hidden">
               <img
                 src={PERSONAL.photoUrl}
                 alt={PERSONAL.name}
@@ -187,7 +227,7 @@ const Hero = () => {
             </div>
 
             {/* Caption block */}
-            <div className="absolute -bottom-6 left-6 right-6 bg-[var(--surface)] border border-[var(--border)] px-4 py-3 shadow-sm flex items-center justify-between">
+            <div className="absolute -bottom-6 left-6 right-6 rounded-xl bg-[var(--surface)] border border-[var(--border)] px-4 py-3 shadow-sm flex items-center justify-between">
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-secondary)]">
                   ID · 2026

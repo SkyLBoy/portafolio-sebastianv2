@@ -81,7 +81,7 @@ const copyEmail = async () => {
                     key={i}
                     className="flex items-start gap-5 py-4 border-b border-[var(--border)] last:border-b-0"
                   >
-                    <span className="inline-flex items-center justify-center w-11 h-11 border border-[var(--border)] text-[var(--accent)] flex-shrink-0">
+                    <span className="inline-flex items-center justify-center card-icon w-11 h-11 flex-shrink-0">
                       <Icon size={17} />
                     </span>
                     <div className="flex-1 min-w-0">
@@ -104,7 +104,7 @@ const copyEmail = async () => {
                       <button
                         onClick={copyEmail}
                         data-testid="contact-copy-email"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+                        className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-mono uppercase border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
                         aria-label={t("contact.copyEmail")}
                       >
                         {copied ? <Check size={12} /> : <Copy size={12} />}
@@ -114,6 +114,7 @@ const copyEmail = async () => {
                   </li>
                 );
               })}
+            </ul>
               <p 
               role="status"
               aria-live="polite"
@@ -126,7 +127,6 @@ const copyEmail = async () => {
                   ? t("contact.copied")
                   : ""}
               </p>
-            </ul>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <a
@@ -163,9 +163,9 @@ const copyEmail = async () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="social-linkedin"
-              className="card-tech p-6 flex items-center gap-4 group"
+              className="card-tech card-link p-6 flex items-center gap-4 group"
             >
-              <span className="inline-flex items-center justify-center w-12 h-12 bg-[#0A66C2] text-white">
+              <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#0A66C2] text-white">
                 <Linkedin size={20} />
               </span>
               <div className="flex-1">
@@ -183,9 +183,9 @@ const copyEmail = async () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="social-github"
-              className="card-tech p-6 flex items-center gap-4 group"
+              className="card-tech card-link p-6 flex items-center gap-4 group"
             >
-              <span className="inline-flex items-center justify-center w-12 h-12 bg-[var(--text-primary)] text-[var(--bg)]">
+              <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--text-primary)] text-[var(--bg)]">
                 <Github size={20} />
               </span>
               <div className="flex-1">
@@ -198,7 +198,7 @@ const copyEmail = async () => {
               </div>
             </a>
 
-            <div className="card-tech p-6 bg-[var(--accent)] text-white border-[var(--accent)]">
+            <div className="card-tech card-status p-6">
               <p className="font-mono text-[10px] uppercase tracking-widest opacity-80 mb-2">
                 {t("contact.statusLabel")}
               </p>

@@ -1,21 +1,48 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Server, Network, Code2, MapPin, Calendar } from "lucide-react";
+import { Network, Code2, MapPin, Calendar, ChevronDown } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { SectionHeader } from "./About";
 
-const ICONS = { server: Server, network: Network, code: Code2 };
+const CompanyLogos = ({ job }) => {
+  if (!job.logo) return null;
+
+  return (
+    <div className={`flex shrink-0 items-center gap-3 max-w-full ${job.secondaryLogo ? "w-52" : "w-36"}`}>
+      {job.secondaryLogo && (
+        <img
+          src={`${process.env.PUBLIC_URL}${job.secondaryLogo}`}
+          alt="Vincco Centro de Contacto"
+          loading="lazy"
+          className="w-16 h-10 object-contain"
+        />
+      )}
+      <img
+        src={`${process.env.PUBLIC_URL}${job.logo}`}
+        alt={job.logo === "/assets/logo-ct.png" ? "CT Internacional" : job.company}
+        loading="lazy"
+        className={`min-w-0 h-10 object-contain ${job.secondaryLogo ? "w-32" : "w-full"} ${job.logo === "/assets/logo_grande_vincco.png" ? "" : "brightness-0 dark:invert"}`}
+      />
+    </div>
+  );
+};
+
+const ResponsibilityList = ({ items }) => (
+  <ul className="space-y-2 text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed">
+    {items.map((item) => (
+      <li key={item} className="relative pl-4 before:content-['→'] before:absolute before:left-0 before:text-[var(--accent)]">
+        {item}
+      </li>
+    ))}
+  </ul>
+);
 
 const Experience = () => {
   const { t } = useLang();
   const jobs = t("experience.jobs");
 
   return (
-    <section
-      id="experience"
-      data-testid="experience-section"
-      className="section-y relative"
-    >
+    <section id="experience" data-testid="experience-section" className="section-y relative">
       <div className="container-x">
         <SectionHeader
           overline={t("experience.overline")}
@@ -23,91 +50,85 @@ const Experience = () => {
           lead={t("experience.lead")}
         />
 
-        <div className="mt-16 relative max-w-4xl">
-          {/* Vertical line */}
-          <div
-            className="absolute left-5 md:left-6 top-2 bottom-2 w-px bg-[var(--border)]"
-            aria-hidden="true"
-          />
-
-          <ol className="space-y-12">
-            {Array.isArray(jobs) &&
-              jobs.map((job, i) => {
-                const Icon = ICONS[job.icon] || Server;
-                const isCurrent = job.current === true;
-                return (
-                  <motion.li
-                    key={i}
-                    data-testid={`exp-item-${i}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    className="relative pl-16 md:pl-20"
-                  >
-                    {/* Node */}
-                    <div
-                      className={`absolute left-0 top-0 w-10 h-10 md:w-12 md:h-12 inline-flex items-center justify-center border-2 ${
-                        isCurrent
-                          ? "border-[var(--accent)] bg-[var(--accent)] text-white"
-                          : "border-[var(--border-strong)] bg-[var(--surface)] text-[var(--accent)]"
-                      }`}
-                    >
-                      <Icon size={16} />
+        <ol className="mt-14 max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
+          {Array.isArray(jobs) && jobs.map((job, i) => {
+            const isCurrent = job.current === true;
+            return (
+              <motion.li
+                key={`${job.company}-${job.role}`}
+                data-testid={`exp-item-${i}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.4 }}
+                className={isCurrent || i === jobs.length - 1 ? "md:col-span-2" : ""}
+              >
+                <article className={`card-tech h-full p-5 md:p-8 ${isCurrent ? "card-featured" : ""}`}>
+                  <div className={`flex flex-wrap items-start gap-x-8 gap-y-4 mb-5 ${isCurrent ? "justify-between border-b border-[var(--border)] pb-5" : "flex-col"}`}>
+                    <div className="space-y-2">
                       {isCurrent && (
-                        <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-500 node-pulse border-2 border-[var(--bg)]" />
+                        <span className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 bg-emerald-500/10 font-mono text-xs text-emerald-700 dark:text-emerald-300">
+                          <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-current" />
+                          {t("experience.currentJob")}
+                        </span>
                       )}
+                      <p className="flex items-center gap-2 font-mono text-xs text-[var(--text-secondary)]">
+                        <Calendar size={13} aria-hidden="true" className="shrink-0" />
+                        {job.period}
+                      </p>
                     </div>
+                    <CompanyLogos job={job} />
+                  </div>
 
-                    <div className="card-tech p-6 md:p-8">
-                      <div className="flex flex-wrap items-center gap-3 mb-3">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--accent)] flex items-center gap-1.5">
-                          <Calendar size={11} />
-                          {job.period}
-                        </span>
-                        {isCurrent && (
-                          <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 bg-emerald-500/10 text-emerald-500 border border-emerald-500/40">
-                            {t("experience.currentJob")}
-                          </span>
-                        )}
-                        {job.location && (
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)] flex items-center gap-1.5">
-                          <MapPin size={11} />
-                          {job.location}
-                        </span>
-                        )}
+                  <h3 className={`font-heading font-semibold text-[var(--text-primary)] tracking-tight leading-snug ${isCurrent ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"}`}>
+                    {job.role}
+                  </h3>
+                  <p className="mt-2 font-medium text-[var(--accent)]">{job.company}</p>
+                  {job.location && (
+                    <p className="mt-2 flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+                      <MapPin size={13} aria-hidden="true" className="shrink-0" />
+                      {job.location}
+                    </p>
+                  )}
+
+                  {isCurrent && job.responsibilityGroups ? (
+                    <>
+                      <div className="mt-7 grid md:grid-cols-2 gap-7 border-t border-[var(--border)] pt-6">
+                        {job.responsibilityGroups.map((group) => {
+                          const Icon = group.icon === "network" ? Network : Code2;
+                          return (
+                            <div key={group.title}>
+                              <h4 className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[var(--text-primary)] mb-4">
+                                <Icon size={15} aria-hidden="true" className="shrink-0 text-[var(--accent)]" />
+                                {group.title}
+                              </h4>
+                              <ResponsibilityList items={group.indices.map(index => job.achievements[index])} />
+                            </div>
+                          );
+                        })}
                       </div>
-
-                      <h3 className="font-heading font-semibold text-xl md:text-2xl text-[var(--text-primary)] tracking-tight mb-1">
-                        {job.role}
-                      </h3>
-                      <p className="text-[var(--accent)] font-medium mb-5">
-                        {job.company}
-                      </p>
-
-                      {job.achievements?.length > 0 && (
-                      <>
-                      <p className="overline mb-3">
-                        {t("experience.achievementsLabel")}
-                      </p>
-                      <ul className="space-y-2">
-                        {job.achievements.map((a, j) => (
-                          <li
-                            key={j}
-                            className="text-sm md:text-[15px] text-[var(--text-secondary)] leading-relaxed pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--accent)] before:font-mono before:text-xs before:top-1"
-                          >
-                            {a}
-                          </li>
-                        ))}
-                      </ul>
-                      </>
+                      {job.tags && (
+                        <ul aria-label={t("experience.focusLabel")} className="mt-6 flex flex-wrap gap-2">
+                          {job.tags.map(tag => (
+                            <li key={tag} className="font-mono text-xs rounded px-2.5 py-1.5 bg-[var(--accent-soft)] text-[var(--accent)]">{tag}</li>
+                          ))}
+                        </ul>
                       )}
-                    </div>
-                  </motion.li>
-                );
-              })}
-          </ol>
-        </div>
+                    </>
+                  ) : job.achievements?.length > 0 && (
+                    <details className="experience-details group mt-5 border-t border-[var(--border)] pt-4">
+                      <summary className="flex items-center justify-between gap-3 list-none cursor-pointer text-sm text-[var(--accent)] [&::-webkit-details-marker]:hidden">
+                        {t("experience.achievementsLabel")}
+                        <ChevronDown size={16} aria-hidden="true" className="shrink-0 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="pt-4"><ResponsibilityList items={job.achievements} /></div>
+                    </details>
+                  )}
+                </article>
+              </motion.li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );
