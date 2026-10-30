@@ -17,16 +17,19 @@ import { PERSONAL } from "@/lib/personal";
 const Contact = () => {
   const { t } = useLang();
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
 
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(PERSONAL.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch (e) {
-      // ignore
-    }
-  };
+const copyEmail = async () => {
+  setCopyError(false);
+  setCopied(false);
+
+  try {
+    await navigator.clipboard.writeText(PERSONAL.email);
+    setCopied(true);
+  } catch {
+    setCopyError(true);
+  }
+};
 
   const items = [
     {
@@ -102,7 +105,7 @@ const Contact = () => {
                         onClick={copyEmail}
                         data-testid="contact-copy-email"
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-                        aria-label="Copy email"
+                        aria-label={t("contact.copyEmail")}
                       >
                         {copied ? <Check size={12} /> : <Copy size={12} />}
                         {copied ? t("contact.copied") : t("contact.copy")}
@@ -111,6 +114,18 @@ const Contact = () => {
                   </li>
                 );
               })}
+              <p 
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              className="mt-3 text-sm font-mono text-[var(--text-secondary)]"
+              >
+                {copyError 
+                ? t("contact.copyError")
+                : copied
+                  ? t("contact.copied")
+                  : ""}
+              </p>
             </ul>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -185,7 +200,7 @@ const Contact = () => {
 
             <div className="card-tech p-6 bg-[var(--accent)] text-white border-[var(--accent)]">
               <p className="font-mono text-[10px] uppercase tracking-widest opacity-80 mb-2">
-                Status
+                {t("contact.statusLabel")}
               </p>
               <p className="font-heading text-xl font-semibold leading-snug">
                 {t("hero.status")}

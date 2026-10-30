@@ -1,4 +1,5 @@
 import React from "react";
+import { MotionConfig } from "framer-motion";
 import "@/App.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -17,26 +18,28 @@ import Footer from "@/components/portfolio/Footer";
 
 function App() {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <div className="App min-h-screen bg-[var(--bg)] text-[var(--text-primary)] overflow-x-hidden">
-          <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Specializations />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Achievements />
-            <TechStack />
-            <Value />
-            <Contact />
-          </main>
-          <Footer />
-        </div>
-      </LanguageProvider>
-    </ThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <ThemeProvider>
+        <LanguageProvider>
+          <div className="App min-h-screen bg-[var(--bg)] text-[var(--text-primary)] overflow-x-hidden">
+            <Navbar />
+            <main>
+              <Hero />
+              <About />
+              <Specializations />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Achievements />
+              <TechStack />
+              <Value />
+              <Contact />
+            </main>
+            <Footer />
+          </div>
+        </LanguageProvider>
+      </ThemeProvider>
+    </MotionConfig>
   );
 }
 

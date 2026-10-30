@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { Sun, Moon, Languages, Menu, X, Download, Terminal } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useLang } from "@/contexts/LanguageContext";
@@ -7,6 +8,7 @@ import { PERSONAL } from "@/lib/personal";
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const { lang, toggleLang, t } = useLang();
+  const menuButtonRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -17,6 +19,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   const links = [
     { id: "about", label: t("nav.about") },
     { id: "spec", label: t("nav.specializations") },
@@ -26,10 +41,12 @@ const Navbar = () => {
     { id: "contact", label: t("nav.contact") },
   ];
 
+  const reducedMotion = useReducedMotion();
+
   const go = (id) => {
     setOpen(false);
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (el) el.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
   };
 
   return (
@@ -37,13 +54,14 @@ const Navbar = () => {
       data-testid="navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-xl bg-[var(--bg)]/75 border-b border-[var(--border)]"
+          ? "backdrop-blur-sm bg-[var(--nav-bg)] border-b border-[var(--border)]"
           : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="container-x flex items-center justify-between h-16 md:h-20">
         <button
           onClick={() => go("hero")}
+          aria-label={t("nav.home")}
           data-testid="navbar-logo"
           className="flex items-center gap-2 group"
         >
@@ -78,7 +96,7 @@ const Navbar = () => {
             onClick={toggleLang}
             data-testid="lang-toggle"
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono uppercase tracking-wider border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            aria-label="Toggle language"
+            aria-label={t("nav.switchLanguage")}
           >
             <Languages size={14} />
             {lang === "es" ? "ES" : "EN"}
@@ -88,7 +106,7 @@ const Navbar = () => {
             onClick={toggleTheme}
             data-testid="theme-toggle"
             className="inline-flex items-center justify-center w-10 h-10 border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            aria-label="Toggle theme"
+            aria-label={t(theme === "dark" ? "nav.lightTheme" : "nav.darkTheme")}
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -108,9 +126,11 @@ const Navbar = () => {
           <button
             onClick={() => setOpen((v) => !v)}
             data-testid="mobile-menu-toggle"
-            download="cv-sebastian-calderon.pdf"
+            ref={menuButtonRef}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
             className="lg:hidden inline-flex items-center justify-center w-10 h-10 border border-[var(--border)] text-[var(--text-secondary)]"
-            aria-label="Toggle menu"
+            aria-label={t(open ? "nav.closeMenu" : "nav.openMenu")}
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -118,7 +138,9 @@ const Navbar = () => {
       </div>
 
       {open && (
-        <div
+        <nav
+          id="mobile-navigation"
+          aria-label={t("nav.menu")}
           data-testid="mobile-menu"
           className="lg:hidden border-t border-[var(--border)] bg-[var(--bg)]"
         >
@@ -136,6 +158,7 @@ const Navbar = () => {
             <div className="flex items-center gap-2 mt-4">
               <button
                 onClick={toggleLang}
+                aria-label={t("nav.switchLanguage")}
                 data-testid="mobile-lang-toggle"
                 className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-mono uppercase border border-[var(--border)] text-[var(--text-secondary)]"
               >
@@ -154,7 +177,7 @@ const Navbar = () => {
               </a>
             </div>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

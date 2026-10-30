@@ -46,9 +46,9 @@ const Projects = () => {
                     } border-[var(--border)] overflow-hidden`}
                   >
                     {Mock ? <Mock /> : null}
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-2.5 py-1 bg-[var(--bg)]/85 backdrop-blur border border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-2.5 py-1 bg-[var(--project-label-bg)] backdrop-blur border border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
                       <span className="w-1.5 h-1.5 bg-[var(--accent)]" />
-                      Project · {String(i + 1).padStart(2, "0")} / {list.length}
+                      {labels.project} · {String(i + 1).padStart(2, "0")} / {list.length}
                     </div>
                   </div>
 

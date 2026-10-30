@@ -34,7 +34,7 @@ const Experience = () => {
             {Array.isArray(jobs) &&
               jobs.map((job, i) => {
                 const Icon = ICONS[job.icon] || Server;
-                const isFirst = i === 0;
+                const isCurrent = job.current === true;
                 return (
                   <motion.li
                     key={i}
@@ -48,13 +48,13 @@ const Experience = () => {
                     {/* Node */}
                     <div
                       className={`absolute left-0 top-0 w-10 h-10 md:w-12 md:h-12 inline-flex items-center justify-center border-2 ${
-                        isFirst
+                        isCurrent
                           ? "border-[var(--accent)] bg-[var(--accent)] text-white"
                           : "border-[var(--border-strong)] bg-[var(--surface)] text-[var(--accent)]"
                       }`}
                     >
                       <Icon size={16} />
-                      {isFirst && (
+                      {isCurrent && (
                         <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-500 node-pulse border-2 border-[var(--bg)]" />
                       )}
                     </div>
@@ -65,15 +65,17 @@ const Experience = () => {
                           <Calendar size={11} />
                           {job.period}
                         </span>
-                        {isFirst && (
+                        {isCurrent && (
                           <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 bg-emerald-500/10 text-emerald-500 border border-emerald-500/40">
-                            {t("experience.present")}
+                            {t("experience.currentJob")}
                           </span>
                         )}
+                        {job.location && (
                         <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)] flex items-center gap-1.5">
                           <MapPin size={11} />
                           {job.location}
                         </span>
+                        )}
                       </div>
 
                       <h3 className="font-heading font-semibold text-xl md:text-2xl text-[var(--text-primary)] tracking-tight mb-1">
@@ -83,6 +85,8 @@ const Experience = () => {
                         {job.company}
                       </p>
 
+                      {job.achievements?.length > 0 && (
+                      <>
                       <p className="overline mb-3">
                         {t("experience.achievementsLabel")}
                       </p>
@@ -96,6 +100,8 @@ const Experience = () => {
                           </li>
                         ))}
                       </ul>
+                      </>
+                      )}
                     </div>
                   </motion.li>
                 );

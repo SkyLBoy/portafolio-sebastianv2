@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Download, Mail, ArrowDown, MapPin, Circle } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { PERSONAL } from "@/lib/personal";
@@ -7,9 +7,11 @@ import { PERSONAL } from "@/lib/personal";
 const Hero = () => {
   const { t } = useLang();
 
+  const reducedMotion = useReducedMotion();
+
   const go = (id) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (el) el.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
   };
 
   return (

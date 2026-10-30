@@ -9,6 +9,12 @@ export const translations = {
       contact: "Contacto",
       downloadCV: "Descargar CV",
       menu: "Menú",
+      home: "Ir al inicio",
+      switchLanguage: "Switch to English",
+      lightTheme: "Activar tema claro",
+      darkTheme: "Activar tema oscuro",
+      openMenu: "Abrir menú",
+      closeMenu: "Cerrar menú",
     },
     hero: {
       overline: "Software Engineer · IT Infrastructure",
@@ -21,11 +27,12 @@ export const translations = {
         "Profesional de Tecnologías de la Información con experiencia en desarrollo de software, administración de infraestructura tecnológica, redes empresariales, automatización de procesos y documentación técnica. Especializado en crear soluciones empresariales, optimizar procesos y resolver problemas tecnológicos complejos.",
       ctaCV: "Descargar CV",
       ctaContact: "Contactar",
+      copyError: "No se puede copiar . Selecciona el correo y cópialo manualmente.",
       ctaProjects: "Ver proyectos",
       location: "Hermosillo, Sonora · MX",
       status: "Disponible para oportunidades",
       currentRole: "Actualmente",
-      currentCompany: "Ingeniero de Software | Soporte en Vincco - CT Internacional",
+      currentCompany: "Ingeniero de Tecnología de Software en Interlogic Global",
     },
     about: {
       overline: "01 · Perfil profesional",
@@ -44,8 +51,8 @@ export const translations = {
         title: "Información clave",
         items: [
           { k: "Nombre", v: "Sebastián Calderón López" },
-          { k: "Rol actual", v: "Ing. en Software | Soporte en Vincco - CT Internacional" },
-          { k: "Empresa", v: "CT Internacional" },
+          { k: "Rol actual", v: "Ingeniero de Tecnología de Software" },
+          { k: "Empresa", v: "Interlogic Global" },
           { k: "Formación", v: "Ing. en Software · UES" },
           { k: "Ubicación", v: "Hermosillo, Sonora, MX" },
           { k: "Idiomas", v: "Español · Inglés" },
@@ -99,6 +106,9 @@ export const translations = {
             "TCP/IP",
             "Redes Empresariales",
             "Diagnóstico de Conectividad",
+            "Administración de Redes",
+            "Segmentación de Redes",
+            "Configuración de Equipos de Red",
           ],
         },
         {
@@ -112,11 +122,11 @@ export const translations = {
         },
         {
           name: "Desarrollo",
-          items: ["React", "JavaScript", "PHP", "HTML", "CSS", "Git", "GitHub"],
+          items: ["React", "JavaScript", "PHP", "HTML", "CSS", "Git", "GitHub", "Análisis de Requerimientos", "Mantenimiento de Software", "Depuración"],
         },
         {
           name: "Bases de Datos",
-          items: ["SQL", "PostgreSQL", "MySQL", "SQL Server"],
+          items: ["SQL", "PostgreSQL", "MySQL", "SQL Server", "MongoDB"],
         },
         {
           name: "Documentación",
@@ -139,6 +149,7 @@ export const translations = {
       lead:
         "Soluciones reales entregadas en entornos productivos: desarrollo web corporativo, sistemas de inventario y automatización documental.",
       labels: {
+        project: "Proyecto",
         tech: "Tecnologías",
         features: "Funcionalidades",
         problem: "Problema resuelto",
@@ -233,12 +244,30 @@ export const translations = {
       lead:
         "Recorrido en empresas públicas y privadas, combinando desarrollo de software y operación de infraestructura tecnológica.",
       present: "Actualidad",
+      currentJob: "Trabajo actual",
       achievementsLabel: "Responsabilidades & logros",
       jobs: [
         {
+          current: true,
+          role: "Ingeniero de Tecnología de Software",
+          company: "Interlogic Global",
+          period: "Octubre 2026 — Actualidad",
+          icon: "code",
+          achievements: [
+            "Configuración y administración de redes empresariales y equipos de conectividad.",
+            "Diagnóstico y resolución de incidentes de red, conectividad y comunicación entre sistemas.",
+            "Configuración de VLANs y segmentación de redes para organizar y controlar el tráfico.",
+            "Soporte y mantenimiento de infraestructura tecnológica para la continuidad de los servicios.",
+            "Análisis de requerimientos, desarrollo y mantenimiento de soluciones de software para procesos internos.",
+            "Automatización de tareas operativas mediante scripts en Python y PowerShell.",
+            "Pruebas funcionales, diagnóstico de errores y resolución de problemas de software.",
+            "Elaboración de diagramas de red, procedimientos y documentación técnica.",
+          ],
+        },
+        {
           role: "Ingeniero Avanzado de Soporte Técnico",
           company: "Vincco - CT Internacional",
-          period: "May 2025 — Actualidad",
+          period: "Mayo 2025 — Octubre 2026",
           location: "Hermosillo, Sonora",
           icon: "server",
           achievements: [
@@ -299,7 +328,7 @@ export const translations = {
         Desarrollo: ["React", "JavaScript", "PHP", "HTML", "CSS"],
         Automatización: ["Python", "PowerShell"],
         Infraestructura: ["Aruba", "Fortinet", "TCP/IP", "VLANs"],
-        "Bases de Datos": ["SQL", "PostgreSQL", "MySQL","MongoDB"],
+        "Bases de Datos": ["SQL", "PostgreSQL", "MySQL", "SQL Server", "MongoDB"],
         Herramientas: ["Git", "GitHub"],
       },
     },
@@ -332,6 +361,8 @@ export const translations = {
       sendEmail: "Enviar correo",
       copy: "Copiar",
       copied: "Copiado",
+      copyEmail: "Copiar correo",
+      statusLabel: "Disponibilidad",
     },
     footer: {
       rights: "Todos los derechos reservados.",
@@ -346,8 +377,15 @@ export const translations = {
       projects: "Projects",
       experience: "Experience",
       contact: "Contact",
+      copyError: "Could not copy. Please select the email and copy it manually.",
       downloadCV: "Download CV",
       menu: "Menu",
+      home: "Go to home",
+      switchLanguage: "Cambiar a español",
+      lightTheme: "Use light theme",
+      darkTheme: "Use dark theme",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
     },
     hero: {
       overline: "Software Engineer · IT Infrastructure",
@@ -364,7 +402,7 @@ export const translations = {
       location: "Hermosillo, Sonora · MX",
       status: "Open to opportunities",
       currentRole: "Currently",
-      currentCompany: "Advanced Support Engineer at CT Internacional",
+      currentCompany: "Software Technology Engineer at Interlogic Global",
     },
     about: {
       overline: "01 · Professional profile",
@@ -374,7 +412,7 @@ export const translations = {
       paragraph:
         "I have contributed to enterprise projects related to web development, inventory systems, IT infrastructure administration, documentation automation and specialized support. I'm passionate about technology, problem solving and continuous improvement through innovative tools.",
       stats: [
-        { value: "3+", label: "Years of professional experience" },
+        { value: "1+", label: "Years of professional experience" },
         { value: "5+", label: "Enterprise projects delivered" },
         { value: "2", label: "Companies: public and private" },
         { value: "B2", label: "English (Intermediate)" },
@@ -383,8 +421,8 @@ export const translations = {
         title: "Key information",
         items: [
           { k: "Name", v: "Sebastián Calderón López" },
-          { k: "Current role", v: "Advanced Support Engineer" },
-          { k: "Company", v: "CT Internacional" },
+          { k: "Current role", v: "Software Technology Engineer" },
+          { k: "Company", v: "Interlogic Global" },
           { k: "Education", v: "B.Sc. Software Eng. · UES" },
           { k: "Location", v: "Hermosillo, Sonora, MX" },
           { k: "Languages", v: "Spanish · English" },
@@ -438,6 +476,9 @@ export const translations = {
             "TCP/IP",
             "Enterprise Networks",
             "Connectivity Troubleshooting",
+            "Network Administration",
+            "Network Segmentation",
+            "Network Device Configuration",
           ],
         },
         {
@@ -451,11 +492,11 @@ export const translations = {
         },
         {
           name: "Development",
-          items: ["React", "JavaScript", "PHP", "HTML", "CSS", "Git", "GitHub"],
+          items: ["React", "JavaScript", "PHP", "HTML", "CSS", "Git", "GitHub", "Requirements Analysis", "Software Maintenance", "Debugging"],
         },
         {
           name: "Databases",
-          items: ["SQL", "PostgreSQL", "MySQL", "SQL Server"],
+          items: ["SQL", "PostgreSQL", "MySQL", "SQL Server", "MongoDB"],
         },
         {
           name: "Documentation",
@@ -478,6 +519,7 @@ export const translations = {
       lead:
         "Real solutions delivered in production environments: corporate web development, inventory systems and document automation.",
       labels: {
+        project: "Project",
         tech: "Stack",
         features: "Features",
         problem: "Problem solved",
@@ -572,12 +614,30 @@ export const translations = {
       lead:
         "Path through public and private companies, combining software development with IT infrastructure operations.",
       present: "Present",
+      currentJob: "Current role",
       achievementsLabel: "Responsibilities & achievements",
       jobs: [
         {
+          current: true,
+          role: "Software Technology Engineer",
+          company: "Interlogic Global",
+          period: "October 2026 — Present",
+          icon: "code",
+          achievements: [
+            "Configuration and administration of enterprise networks and connectivity equipment.",
+            "Diagnosis and resolution of network, connectivity and system communication incidents.",
+            "VLAN configuration and network segmentation to organize and control traffic.",
+            "Support and maintenance of IT infrastructure to maintain service continuity.",
+            "Requirements analysis, development and maintenance of software solutions for internal processes.",
+            "Automation of operational tasks using Python and PowerShell scripts.",
+            "Functional testing, error diagnosis and software troubleshooting.",
+            "Creation of network diagrams, procedures and technical documentation.",
+          ],
+        },
+        {
           role: "Advanced Technical Support Engineer",
           company: "CT Internacional",
-          period: "May 2025 — Present",
+          period: "May 2025 — October 2026",
           location: "Hermosillo, Sonora",
           icon: "server",
           achievements: [
@@ -638,7 +698,7 @@ export const translations = {
         Development: ["React", "JavaScript", "PHP", "HTML", "CSS"],
         Automation: ["Python", "PowerShell"],
         Infrastructure: ["Aruba", "Fortinet", "TCP/IP", "VLANs"],
-        Databases: ["SQL", "PostgreSQL", "MySQL"],
+        Databases: ["SQL", "PostgreSQL", "MySQL", "SQL Server", "MongoDB"],
         Tools: ["Git", "GitHub"],
       },
     },
@@ -671,6 +731,8 @@ export const translations = {
       sendEmail: "Send email",
       copy: "Copy",
       copied: "Copied",
+      copyEmail: "Copy email",
+      statusLabel: "Availability",
     },
     footer: {
       rights: "All rights reserved.",

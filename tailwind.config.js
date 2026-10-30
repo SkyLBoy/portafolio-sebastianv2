@@ -21,7 +21,7 @@ module.exports = {
         accent: "var(--accent)",
         "accent-hover": "var(--accent-hover)",
         "accent-soft": "var(--accent-soft)",
-        border: "hsl(var(--border))",
+        border: "var(--border)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
       },

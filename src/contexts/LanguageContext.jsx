@@ -8,15 +8,26 @@ const LanguageContext = createContext({
 });
 
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "es";
-    return localStorage.getItem("portfolio-lang") || "es";
-  });
+    const [lang, setLang] = useState(() => {
+      if (typeof window === "undefined") return "es";
 
-  useEffect(() => {
-    localStorage.setItem("portfolio-lang", lang);
-    document.documentElement.lang = lang;
-  }, [lang]);
+      try {
+        const stored = localStorage.getItem("portfolio-lang");
+        return stored === "en" ? "en" : "es";
+      } catch {
+        return "es";
+      }
+});
+
+    useEffect(() => {
+      try {
+        localStorage.setItem("portfolio-lang", lang);
+      } catch {
+        // El idioma funciona aunque el navegador bloquee el almacenamiento.
+      }
+
+      document.documentElement.lang = lang;
+    }, [lang]);
 
   const toggleLang = () => setLang((l) => (l === "es" ? "en" : "es"));
 
