@@ -1,0 +1,35 @@
+{
+  "status": "draft",
+  "publishable": false,
+  "project": {
+    "id": "infrastructure-case-draft",
+    "name": null,
+    "featured": false,
+    "subtitle": null,
+    "summary": null,
+    "desc": null,
+    "tech": [],
+    "features": [],
+    "problem": null,
+    "participation": null,
+    "impact": null
+  },
+  "caseStudy": {
+    "kind": null,
+    "context": null,
+    "scope": null,
+    "period": null,
+    "equipment": [],
+    "ownTasks": [],
+    "teamTasks": [],
+    "solution": null,
+    "validation": {
+      "procedure": null,
+      "expectedBehavior": null,
+      "observedBehavior": null,
+      "evidence": [],
+      "limitations": []
+    },
+    "diagram": null
+  }
+}

@@ -54,3 +54,24 @@ portfolio/
 ## Licencia
 
 Uso personal de Sebastián Calderón López. Diseño y código pueden ser reutilizados como referencia.
+
+## Imágenes reales de proyectos
+
+Las tarjetas muestran las ilustraciones SVG existentes, identificadas como
+“Ilustración del proyecto”. No se presentan como capturas reales.
+
+Para incorporar capturas, agrega los archivos a `public/assets/projects/` y
+actualiza el campo `image` de cada proyecto en `src/lib/projectMedia.js`:
+
+| Proyecto | Archivo sugerido | Clave en `PROJECT_MEDIA` |
+| --- | --- | --- |
+| Página Web Corporativa Vincco | `vincco-web.webp` | `vincco-website` |
+| Sistema de Inventario SEC | `inventario-sec.webp` | `sec-inventory` |
+| Generador Automático de Presentaciones | `generador-presentaciones.webp` | `presentation-generator` |
+| Sistema de Inventario Vincco | `inventario-vincco.webp` | `vincco-inventory` |
+| Generador de Documentación Técnica | `generador-documentacion.webp` | `documentation-generator` |
+
+Por ejemplo, configura `image: "/assets/projects/vincco-web.webp"` cuando ese
+archivo exista. La captura sustituirá la ilustración y su etiqueta automáticamente.
+Las imágenes se muestran en proporción 16:10; una captura de 1280 × 800 px es adecuada.
+No es necesario modificar el componente ni duplicar la ruta entre idiomas.

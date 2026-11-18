@@ -20,14 +20,13 @@ export const translations = {
       overline: "Software Engineer · IT Infrastructure",
       greeting: "Hola, soy",
       name: "Sebastián",
-      title: "Ingeniero en Software especializado en Infraestructura Tecnológica",
+      title: "Infraestructura TI y automatización",
       tagline:
         "Desarrollo de Software · Redes Empresariales · Automatización · Infraestructura TI · Documentación Técnica",
       description:
-        "Me dedico principalmente a redes e infraestructura empresarial. Combino ingeniería de software y automatización para resolver problemas operativos y mejorar procesos.",
+        "Soy ingeniero en Software. Administro redes empresariales y desarrollo herramientas que simplifican la operación tecnológica",
       ctaCV: "Descargar CV",
       ctaContact: "Contactar",
-      copyError: "No se puede copiar . Selecciona el correo y cópialo manualmente.",
       ctaProjects: "Ver proyectos",
       location: "Hermosillo, Sonora · MX",
       status: "Disponible para oportunidades",
@@ -35,7 +34,7 @@ export const translations = {
       currentCompany: "Ingeniero de Tecnología de Software en Interlogic Global",
     },
     about: {
-      overline: "01 · Perfil profesional",
+      overline: "02 · Perfil profesional",
       title: "Sobre mí",
       strengths: ["Experiencia combinada en desarrollo de software e infraestructura.", "Documentación técnica y transferencia de conocimiento.", "Resolución de problemas con enfoque en la operación y el usuario."],
       lead:
@@ -93,66 +92,139 @@ export const translations = {
       ],
     },
     skills: {
-      overline: "04 · Especialidades",
-      title: "Especialidades y tecnologías",
-      descriptions: ["Configuración, administración y diagnóstico de redes empresariales e infraestructura.", "Scripts y herramientas para reducir tareas manuales y estandarizar procesos.", "Análisis, desarrollo y mantenimiento de soluciones para procesos internos.", "Modelado, consultas y administración de datos para aplicaciones empresariales.", "Manuales, diagramas y procedimientos que facilitan la operación y el soporte.", "Trabajo organizado, validación funcional y resolución de incidentes."],
-      lead:
-        "Redes e infraestructura como enfoque principal, complementadas por desarrollo, automatización y documentación técnica.",
-      groups: [
+      "overline": "04 · Especialidades",
+      "title": "Especialidades y tecnologías",
+      "lead": "Redes e infraestructura como enfoque principal, complementadas por desarrollo, automatización y documentación técnica.",
+      "evidenceLabel": "En la práctica",
+      "groups": [
         {
-          name: "Infraestructura",
-          items: [
+          "id": "infrastructure",
+          "name": "Infraestructura y redes",
+          "icon": "network",
+          "description": "Conectividad, segmentación y operación de redes empresariales.",
+          "items": [
             "Aruba",
             "Fortinet",
-            "VLANs",
             "TCP/IP",
-            "Redes Empresariales",
-            "Diagnóstico de Conectividad",
-            "Administración de Redes",
-            "Segmentación de Redes",
-            "Configuración de Equipos de Red",
+            "VLANs y segmentación"
           ],
+          "references": [
+            {
+              "href": "#experience-1",
+              "label": "Vincco - CT Internacional · redes Aruba y Fortinet"
+            }
+          ]
         },
         {
-          name: "Automatización",
-          items: [
+          "id": "automation",
+          "name": "Automatización",
+          "icon": "bot",
+          "description": "Herramientas y scripts para tareas operativas y generación de documentos.",
+          "items": [
             "Python",
-            "PowerShell",
-            "Automatización Documental",
-            "Automatización de Reportes",
+            "PowerShell"
           ],
+          "references": [
+            {
+              "href": "#project-presentation-generator",
+              "label": "Generador Automático de Presentaciones"
+            },
+            {
+              "href": "#experience-0",
+              "label": "Interlogic Global · scripts operativos"
+            }
+          ]
         },
         {
-          name: "Desarrollo",
-          items: ["React", "JavaScript", "PHP", "HTML", "CSS", "Git", "GitHub", "Análisis de Requerimientos", "Mantenimiento de Software", "Depuración"],
-        },
-        {
-          name: "Bases de Datos",
-          items: ["SQL", "PostgreSQL", "MySQL", "SQL Server", "MongoDB"],
-        },
-        {
-          name: "Documentación",
-          items: [
-            "Manuales Técnicos",
-            "Procedimientos",
-            "Diagramas",
-            "Reportes Técnicos",
+          "id": "development",
+          "name": "Desarrollo de software",
+          "icon": "code",
+          "description": "Aplicaciones web y soluciones para procesos internos.",
+          "items": [
+            "React",
+            "JavaScript",
+            "PHP",
+            "HTML y CSS",
+            "Git y GitHub"
           ],
+          "references": [
+            {
+              "href": "#project-vincco-website",
+              "label": "Página Web Corporativa Vincco"
+            }
+          ]
         },
         {
-          name: "Metodologías",
-          items: ["Scrum", "QA Funcional", "Soporte N2 / N3"],
+          "id": "databases",
+          "name": "Bases de datos",
+          "icon": "database",
+          "description": "Modelado y consultas para aplicaciones empresariales.",
+          "items": [
+            "SQL",
+            "PostgreSQL",
+            "MySQL",
+            "SQL Server",
+            "MongoDB"
+          ],
+          "references": [
+            {
+              "href": "#project-sec-inventory",
+              "label": "Inventario SEC · PHP y SQL"
+            }
+          ]
         },
-      ],
+        {
+          "id": "documentation",
+          "name": "Documentación técnica",
+          "icon": "file",
+          "description": "Información para operar, mantener y dar soporte a los sistemas.",
+          "items": [
+            "Manuales y procedimientos",
+            "Diagramas de red",
+            "Reportes técnicos"
+          ],
+          "references": [
+            {
+              "href": "#experience-0",
+              "label": "Interlogic Global · documentación técnica"
+            }
+          ]
+        },
+        {
+          "id": "practices",
+          "name": "Prácticas de trabajo",
+          "icon": "workflow",
+          "description": "Organización del trabajo, validación funcional y soporte técnico.",
+          "items": [
+            "Scrum",
+            "QA funcional",
+            "Soporte N2/N3"
+          ],
+          "references": [
+            {
+              "href": "#experience-3",
+              "label": "SEC · requerimientos y pruebas funcionales"
+            }
+          ]
+        }
+      ]
     },
     projects: {
-      overline: "03 · Proyectos",
-      title: "Proyectos empresariales",
+      overline: "01 · Proyectos",
+      title: "Proyectos destacados",
       lead:
-        "Soluciones reales entregadas en entornos productivos: desarrollo web corporativo, sistemas de inventario y automatización documental.",
+        "Desarrollo web, control de activos y automatización. Explora cada proyecto para conocer el problema, mi participación y el resultado.",
       labels: {
         project: "Proyecto",
         visitWebsite: "Visitar sitio",
+        details: "Ver caso de estudio",
+        solution: "Solución",
+        participation: "Mi participación",
+        result: "Resultado",
+        illustration: "Ilustración del proyecto",
+        image: "Vista del proyecto",
+        more: "Ver más proyectos",
+        less: "Ver menos proyectos",
         repository: "Ver código",
         tech: "Tecnologías",
         features: "Funcionalidades",
@@ -162,6 +234,10 @@ export const translations = {
       list: [
         {
           name: "Página Web Corporativa Vincco",
+          id: "vincco-website",
+          featured: true,
+          summary: "Sitio corporativo para fortalecer la presencia digital de Vincco.",
+          participation: "Diseño y desarrollo del sitio web corporativo.",
           website: "https://vincco.com/",
           alternateWebsite: "https://vincco.mx/",
           repository: "https://github.com/SkyLBoy/Vincco_pagina_actu-main",
@@ -181,6 +257,10 @@ export const translations = {
         },
         {
           name: "Sistema de Inventario SEC",
+          id: "sec-inventory",
+          featured: true,
+          summary: "Plataforma para registrar, consultar y controlar activos tecnológicos.",
+          participation: "Desarrollo de la plataforma de administración y control de activos tecnológicos.",
           subtitle: "Secretaría de Educación y Cultura",
           desc: "Desarrollo de plataforma para administración y control de activos tecnológicos del Departamento de Informática.",
           tech: ["PHP", "SQL", "JavaScript"],
@@ -197,6 +277,10 @@ export const translations = {
         },
         {
           name: "Sistema de Inventario Vincco",
+          id: "vincco-inventory",
+          featured: false,
+          summary: "Sistema interno para controlar inventario, movimientos y permisos.",
+          participation: "Desarrollo del sistema empresarial de control y seguimiento de inventario.",
           subtitle: "Plataforma empresarial interna",
           desc: "Desarrollo de sistema empresarial para control y seguimiento de inventario, con módulos de roles, movimientos y alertas.",
           tech: ["PHP", "SQL", "JavaScript"],
@@ -213,6 +297,10 @@ export const translations = {
         },
         {
           name: "Generador Automático de Presentaciones",
+          id: "presentation-generator",
+          featured: true,
+          summary: "Herramienta en Python para generar presentaciones corporativas con plantillas.",
+          participation: "Desarrollo de la herramienta interna en Python para automatizar la creación de presentaciones.",
           subtitle: "Automatización corporativa",
           desc: "Herramienta interna desarrollada en Python para automatizar la creación de presentaciones corporativas estandarizadas.",
           tech: ["Python", "Automatización", "python-pptx"],
@@ -229,6 +317,10 @@ export const translations = {
         },
         {
           name: "Generador de Documentación Técnica",
+          id: "documentation-generator",
+          featured: false,
+          summary: "Sistema en Python para generar documentación técnica estandarizada.",
+          participation: "Desarrollo del sistema en Python para generar documentación técnica empresarial.",
           subtitle: "Automatización documental",
           desc: "Sistema en Python orientado a generar documentación técnica empresarial de forma automática.",
           tech: ["Python", "Plantillas", "Automatización"],
@@ -246,23 +338,21 @@ export const translations = {
       ],
     },
     experience: {
-      overline: "02 · Trayectoria",
+      overline: "03 · Trayectoria",
       title: "Experiencia profesional",
       lead:
         "Recorrido en empresas públicas y privadas, combinando desarrollo de software y operación de infraestructura tecnológica.",
       present: "Actualidad",
       currentJob: "Trabajo actual",
       focusLabel: "Áreas de enfoque",
-      achievementsLabel: "Responsabilidades & logros",
+      achievementsLabel: "Más responsabilidades",
+      highlightsLabel: "Responsabilidades principales",
       jobs: [
         {
           current: true,
           role: "Ingeniero de Tecnología de Software",
-          responsibilityGroups: [
-            { title: "Redes e infraestructura", icon: "network", indices: [0, 1, 2, 3] },
-            { title: "Software y automatización", icon: "code", indices: [4, 5, 6, 7] },
-          ],
-          tags: ["Redes empresariales", "VLANs", "Python", "PowerShell"],
+          summary: "Redes e infraestructura empresarial, con desarrollo y automatización de herramientas internas.",
+          primaryIndices: [0,5],
           company: "Interlogic Global",
           logo: "/assets/interlogic-logo-transparent.png",
           period: "Octubre 2026 — Actualidad",
@@ -280,6 +370,8 @@ export const translations = {
         },
         {
           role: "Ingeniero Avanzado de Soporte Técnico",
+          summary: "Soporte técnico avanzado y mantenimiento de infraestructura corporativa.",
+          primaryIndices: [1,2],
           company: "Vincco - CT Internacional",
           logo: "/assets/logo-ct.png",
           secondaryLogo: "/assets/logo_grande_vincco.png",
@@ -295,6 +387,8 @@ export const translations = {
         },
         {
           role: "Encargado del Área de IT",
+          summary: "Administración del área de TI y soporte a la operación interna.",
+          primaryIndices: [0,3],
           company: "Vincco",
           logo: "/assets/logo_grande_vincco.png",
           period: "2025",
@@ -309,6 +403,8 @@ export const translations = {
         },
         {
           role: "Desarrollador de Sistemas — Prácticas Profesionales",
+          summary: "Desarrollo de un sistema de inventario durante las prácticas profesionales.",
+          primaryIndices: [0,1],
           company: "Secretaría de Educación y Cultura (SEC)",
           period: "Jul 2024 — Ene 2025",
           location: "Hermosillo, Sonora",
@@ -370,7 +466,7 @@ export const translations = {
       overline: "05 · Contacto",
       title: "Conversemos",
       lead:
-        "Disponible para oportunidades de TI de nivel intermedio y avanzado, tanto presenciales como remotas.",
+        "Disponible para oportunidades en infraestructura TI, redes empresariales y automatización, tanto presenciales como remotas.",
       emailLabel: "Email",
       phoneLabel: "Teléfono",
       locationLabel: "Ubicación",
@@ -378,6 +474,9 @@ export const translations = {
       sendEmail: "Enviar correo",
       copy: "Copiar",
       copied: "Copiado",
+      copying: "Copiando…",
+      copySuccess: "Correo copiado al portapapeles.",
+      copyError: "No se pudo copiar. Selecciona el correo y cópialo manualmente.",
       copyEmail: "Copiar correo",
       statusLabel: "Disponibilidad",
     },
@@ -394,7 +493,6 @@ export const translations = {
       projects: "Projects",
       experience: "Experience",
       contact: "Contact",
-      copyError: "Could not copy. Please select the email and copy it manually.",
       downloadCV: "Download CV",
       menu: "Menu",
       home: "Go to home",
@@ -408,11 +506,11 @@ export const translations = {
       overline: "Software Engineer · IT Infrastructure",
       greeting: "Hi, I'm",
       name: "Sebastián",
-      title: "Software Engineer specialized in IT Infrastructure",
+      title: "IT infrastructure and automation",
       tagline:
         "Software Development · Enterprise Networks · Automation · IT Infrastructure · Technical Documentation",
       description:
-        "My main focus is enterprise networks and infrastructure. I combine software engineering and automation to solve operational problems and improve processes.",
+        "I'm a Software Engineer. I manage enterprise networks and develop tools that simplify technology operations.",
       ctaCV: "Download CV",
       ctaContact: "Get in touch",
       ctaProjects: "View projects",
@@ -422,7 +520,7 @@ export const translations = {
       currentCompany: "Software Technology Engineer at Interlogic Global",
     },
     about: {
-      overline: "01 · Professional profile",
+      overline: "02 · Professional profile",
       title: "About me",
       strengths: ["Combined experience in software development and infrastructure.", "Technical documentation and knowledge transfer.", "Problem solving focused on operations and end users."],
       lead:
@@ -480,66 +578,139 @@ export const translations = {
       ],
     },
     skills: {
-      overline: "04 · Specializations",
-      title: "Specializations and technologies",
-      descriptions: ["Configuration, administration and troubleshooting of enterprise networks and infrastructure.", "Scripts and tools to reduce manual work and standardize processes.", "Analysis, development and maintenance of solutions for internal processes.", "Data modeling, queries and administration for enterprise applications.", "Manuals, diagrams and procedures that support operations and troubleshooting.", "Organized delivery, functional validation and incident resolution."],
-      lead:
-        "Networks and infrastructure as my main focus, complemented by development, automation and technical documentation.",
-      groups: [
+      "overline": "04 · Specializations",
+      "title": "Specializations and technologies",
+      "lead": "Networks and infrastructure as my main focus, complemented by development, automation and technical documentation.",
+      "evidenceLabel": "In practice",
+      "groups": [
         {
-          name: "Infrastructure",
-          items: [
+          "id": "infrastructure",
+          "name": "Infrastructure and networks",
+          "icon": "network",
+          "description": "Connectivity, segmentation and enterprise network operations.",
+          "items": [
             "Aruba",
             "Fortinet",
-            "VLANs",
             "TCP/IP",
-            "Enterprise Networks",
-            "Connectivity Troubleshooting",
-            "Network Administration",
-            "Network Segmentation",
-            "Network Device Configuration",
+            "VLANs and segmentation"
           ],
+          "references": [
+            {
+              "href": "#experience-1",
+              "label": "CT Internacional · Aruba and Fortinet networks"
+            }
+          ]
         },
         {
-          name: "Automation",
-          items: [
+          "id": "automation",
+          "name": "Automation",
+          "icon": "bot",
+          "description": "Tools and scripts for operational tasks and document generation.",
+          "items": [
             "Python",
-            "PowerShell",
-            "Document Automation",
-            "Report Automation",
+            "PowerShell"
           ],
+          "references": [
+            {
+              "href": "#project-presentation-generator",
+              "label": "Automatic Presentation Generator"
+            },
+            {
+              "href": "#experience-0",
+              "label": "Interlogic Global · operational scripts"
+            }
+          ]
         },
         {
-          name: "Development",
-          items: ["React", "JavaScript", "PHP", "HTML", "CSS", "Git", "GitHub", "Requirements Analysis", "Software Maintenance", "Debugging"],
-        },
-        {
-          name: "Databases",
-          items: ["SQL", "PostgreSQL", "MySQL", "SQL Server", "MongoDB"],
-        },
-        {
-          name: "Documentation",
-          items: [
-            "Technical Manuals",
-            "Procedures",
-            "Diagrams",
-            "Technical Reports",
+          "id": "development",
+          "name": "Software development",
+          "icon": "code",
+          "description": "Web applications and solutions for internal processes.",
+          "items": [
+            "React",
+            "JavaScript",
+            "PHP",
+            "HTML and CSS",
+            "Git and GitHub"
           ],
+          "references": [
+            {
+              "href": "#project-vincco-website",
+              "label": "Vincco Corporate Website"
+            }
+          ]
         },
         {
-          name: "Methodologies",
-          items: ["Scrum", "Functional QA", "N2 / N3 Support"],
+          "id": "databases",
+          "name": "Databases",
+          "icon": "database",
+          "description": "Data modeling and queries for enterprise applications.",
+          "items": [
+            "SQL",
+            "PostgreSQL",
+            "MySQL",
+            "SQL Server",
+            "MongoDB"
+          ],
+          "references": [
+            {
+              "href": "#project-sec-inventory",
+              "label": "SEC Inventory · PHP and SQL"
+            }
+          ]
         },
-      ],
+        {
+          "id": "documentation",
+          "name": "Technical documentation",
+          "icon": "file",
+          "description": "Information for operating, maintaining and supporting systems.",
+          "items": [
+            "Manuals and procedures",
+            "Network diagrams",
+            "Technical reports"
+          ],
+          "references": [
+            {
+              "href": "#experience-0",
+              "label": "Interlogic Global · technical documentation"
+            }
+          ]
+        },
+        {
+          "id": "practices",
+          "name": "Work practices",
+          "icon": "workflow",
+          "description": "Work organization, functional validation and technical support.",
+          "items": [
+            "Scrum",
+            "Functional QA",
+            "N2/N3 support"
+          ],
+          "references": [
+            {
+              "href": "#experience-3",
+              "label": "SEC · requirements and functional testing"
+            }
+          ]
+        }
+      ]
     },
     projects: {
-      overline: "03 · Projects",
-      title: "Enterprise projects",
+      overline: "01 · Projects",
+      title: "Featured projects",
       lead:
-        "Real solutions delivered in production environments: corporate web development, inventory systems and document automation.",
+        "Web development, asset management and automation. Explore each project to learn about the problem, my contribution and the outcome.",
       labels: {
         project: "Project",
         visitWebsite: "Visit website",
+        details: "View case study",
+        solution: "Solution",
+        participation: "My contribution",
+        result: "Outcome",
+        illustration: "Project illustration",
+        image: "Project view",
+        more: "View more projects",
+        less: "View fewer projects",
         repository: "View code",
         tech: "Stack",
         features: "Features",
@@ -549,6 +720,10 @@ export const translations = {
       list: [
         {
           name: "Vincco Corporate Website",
+          id: "vincco-website",
+          featured: true,
+          summary: "Corporate website to strengthen Vincco’s digital presence.",
+          participation: "Design and development of the corporate website.",
           website: "https://vincco.com/",
           alternateWebsite: "https://vincco.mx/",
           repository: "https://github.com/SkyLBoy/Vincco_pagina_actu-main",
@@ -568,6 +743,10 @@ export const translations = {
         },
         {
           name: "SEC Inventory System",
+          id: "sec-inventory",
+          featured: true,
+          summary: "Platform for registering, querying and managing IT assets.",
+          participation: "Development of the IT asset administration and management platform.",
           subtitle: "Ministry of Education and Culture",
           desc: "Platform development for the administration and control of IT assets at the IT Department.",
           tech: ["PHP", "SQL", "JavaScript"],
@@ -584,6 +763,10 @@ export const translations = {
         },
         {
           name: "Vincco Inventory System",
+          id: "vincco-inventory",
+          featured: false,
+          summary: "Internal system for managing inventory, movements and permissions.",
+          participation: "Development of the enterprise inventory control and tracking system.",
           subtitle: "Internal enterprise platform",
           desc: "Enterprise system for inventory control and tracking, with role, movement and alert modules.",
           tech: ["PHP", "SQL", "JavaScript"],
@@ -600,6 +783,10 @@ export const translations = {
         },
         {
           name: "Automatic Presentation Generator",
+          id: "presentation-generator",
+          featured: true,
+          summary: "Python tool for generating corporate presentations from templates.",
+          participation: "Development of the internal Python tool for automated presentation creation.",
           subtitle: "Corporate automation",
           desc: "Internal Python tool to automate the creation of standardized corporate presentations.",
           tech: ["Python", "Automation", "python-pptx"],
@@ -616,6 +803,10 @@ export const translations = {
         },
         {
           name: "Technical Documentation Generator",
+          id: "documentation-generator",
+          featured: false,
+          summary: "Python system for generating standardized technical documentation.",
+          participation: "Development of the Python system for generating enterprise technical documentation.",
           subtitle: "Document automation",
           desc: "Python-based system designed to automatically generate enterprise technical documentation.",
           tech: ["Python", "Templates", "Automation"],
@@ -633,23 +824,21 @@ export const translations = {
       ],
     },
     experience: {
-      overline: "02 · Background",
+      overline: "03 · Background",
       title: "Professional experience",
       lead:
         "Path through public and private companies, combining software development with IT infrastructure operations.",
       present: "Present",
       currentJob: "Current role",
       focusLabel: "Focus areas",
-      achievementsLabel: "Responsibilities & achievements",
+      achievementsLabel: "More responsibilities",
+      highlightsLabel: "Main responsibilities",
       jobs: [
         {
           current: true,
           role: "Software Technology Engineer",
-          responsibilityGroups: [
-            { title: "Networks and infrastructure", icon: "network", indices: [0, 1, 2, 3] },
-            { title: "Software and automation", icon: "code", indices: [4, 5, 6, 7] },
-          ],
-          tags: ["Enterprise networks", "VLANs", "Python", "PowerShell"],
+          summary: "Enterprise networks and infrastructure, alongside development and automation of internal tools.",
+          primaryIndices: [0,5],
           company: "Interlogic Global",
           logo: "/assets/interlogic-logo-transparent.png",
           period: "October 2026 — Present",
@@ -667,6 +856,8 @@ export const translations = {
         },
         {
           role: "Advanced Technical Support Engineer",
+          summary: "Advanced technical support and maintenance of corporate infrastructure.",
+          primaryIndices: [1,2],
           company: "CT Internacional",
           logo: "/assets/logo-ct.png",
           secondaryLogo: "/assets/logo_grande_vincco.png",
@@ -682,6 +873,8 @@ export const translations = {
         },
         {
           role: "IT Lead",
+          summary: "IT area administration and support for internal operations.",
+          primaryIndices: [0,3],
           company: "Vincco",
           logo: "/assets/logo_grande_vincco.png",
           period: "2025",
@@ -696,6 +889,8 @@ export const translations = {
         },
         {
           role: "Systems Developer — Professional Internship",
+          summary: "Development of an inventory system during the professional internship.",
+          primaryIndices: [0,1],
           company: "Ministry of Education and Culture (SEC)",
           period: "Jul 2024 — Jan 2025",
           location: "Hermosillo, Sonora",
@@ -757,7 +952,7 @@ export const translations = {
       overline: "05 · Contact",
       title: "Let's talk",
       lead:
-        "Available for mid and senior IT opportunities, both on-site and remote.",
+        "Available for opportunities in IT infrastructure, enterprise networks and automation, both on-site and remote.",
       emailLabel: "Email",
       phoneLabel: "Phone",
       locationLabel: "Location",
@@ -765,6 +960,9 @@ export const translations = {
       sendEmail: "Send email",
       copy: "Copy",
       copied: "Copied",
+      copying: "Copying…",
+      copySuccess: "Email copied to clipboard.",
+      copyError: "Could not copy. Select the email and copy it manually.",
       copyEmail: "Copy email",
       statusLabel: "Availability",
     },

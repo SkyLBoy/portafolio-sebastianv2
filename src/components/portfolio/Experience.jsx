@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Network, Code2, MapPin, Calendar, ChevronDown } from "lucide-react";
+import { MapPin, Calendar, ChevronDown } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { SectionHeader } from "./About";
 
@@ -53,9 +53,13 @@ const Experience = () => {
         <ol className="mt-14 max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
           {Array.isArray(jobs) && jobs.map((job, i) => {
             const isCurrent = job.current === true;
+            const primaryIndices = job.primaryIndices || [];
+            const primaryItems = primaryIndices.map(index => job.achievements[index]);
+            const secondaryItems = job.achievements.filter((_, index) => !primaryIndices.includes(index));
             return (
               <motion.li
                 key={`${job.company}-${job.role}`}
+                id={`experience-${i}`}
                 data-testid={`exp-item-${i}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -91,37 +95,22 @@ const Experience = () => {
                     </p>
                   )}
 
-                  {isCurrent && job.responsibilityGroups ? (
-                    <>
-                      <div className="mt-7 grid md:grid-cols-2 gap-7 border-t border-[var(--border)] pt-6">
-                        {job.responsibilityGroups.map((group) => {
-                          const Icon = group.icon === "network" ? Network : Code2;
-                          return (
-                            <div key={group.title}>
-                              <h4 className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[var(--text-primary)] mb-4">
-                                <Icon size={15} aria-hidden="true" className="shrink-0 text-[var(--accent)]" />
-                                {group.title}
-                              </h4>
-                              <ResponsibilityList items={group.indices.map(index => job.achievements[index])} />
-                            </div>
-                          );
-                        })}
-                      </div>
-                      {job.tags && (
-                        <ul aria-label={t("experience.focusLabel")} className="mt-6 flex flex-wrap gap-2">
-                          {job.tags.map(tag => (
-                            <li key={tag} className="font-mono text-xs rounded px-2.5 py-1.5 bg-[var(--accent-soft)] text-[var(--accent)]">{tag}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </>
-                  ) : job.achievements?.length > 0 && (
+                  <p className="mt-4 text-sm leading-relaxed text-[var(--text-secondary)]">{job.summary}</p>
+                  {primaryItems.length > 0 && (
+                    <div className="mt-5">
+                      <h4 className="font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)] mb-3">
+                        {t("experience.highlightsLabel")}
+                      </h4>
+                      <ResponsibilityList items={primaryItems} />
+                    </div>
+                  )}
+                  {secondaryItems.length > 0 && (
                     <details className="experience-details group mt-5 border-t border-[var(--border)] pt-4">
-                      <summary className="flex items-center justify-between gap-3 list-none cursor-pointer text-sm text-[var(--accent)] [&::-webkit-details-marker]:hidden">
+                      <summary aria-label={`${t("experience.achievementsLabel")}: ${job.role}`} className="flex items-center justify-between gap-3 list-none cursor-pointer text-sm text-[var(--accent)] [&::-webkit-details-marker]:hidden">
                         {t("experience.achievementsLabel")}
                         <ChevronDown size={16} aria-hidden="true" className="shrink-0 transition-transform group-open:rotate-180" />
                       </summary>
-                      <div className="pt-4"><ResponsibilityList items={job.achievements} /></div>
+                      <div className="pt-4"><ResponsibilityList items={secondaryItems} /></div>
                     </details>
                   )}
                 </article>

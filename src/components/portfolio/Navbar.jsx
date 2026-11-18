@@ -33,9 +33,9 @@ const Navbar = () => {
   }, [open]);
 
   const links = [
+    { id: "projects", label: t("nav.projects") },
     { id: "about", label: t("nav.about") },
     { id: "experience", label: t("nav.experience") },
-    { id: "projects", label: t("nav.projects") },
     { id: "skills", label: t("nav.specializations") },
     { id: "contact", label: t("nav.contact") },
   ];

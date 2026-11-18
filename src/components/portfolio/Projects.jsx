@@ -1,155 +1,116 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Target, Sparkles, ListChecks, Code2, ExternalLink, Github } from "lucide-react";
+import React, { useState } from "react";
+import { ExternalLink, Github, ChevronDown } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { SectionHeader } from "./About";
-import { PROJECT_MOCKS } from "./ProjectMocks";
+import { PROJECT_MEDIA } from "../../lib/projectMedia";
+
+const ProjectCard = ({ project, labels }) => {
+  const media = PROJECT_MEDIA[project.id];
+  const Illustration = media?.Illustration;
+  const titleId = `project-title-${project.id}`;
+
+  return (
+    <article id={`project-${project.id}`} className="card-tech card-project project-card" aria-labelledby={titleId} data-testid={`project-card-${project.id}`}>
+      <figure className="project-figure">
+        <div className="project-image">
+          {media?.image ? (
+            <img src={`${process.env.PUBLIC_URL}${media.image}`} alt={project.name} loading="lazy" width="800" height="500" />
+          ) : Illustration ? (
+            <div aria-hidden="true" className="w-full h-full"><Illustration /></div>
+          ) : null}
+        </div>
+        <figcaption className="project-image-caption">{media?.image ? labels.image : labels.illustration}</figcaption>
+      </figure>
+
+      <div className="project-card-content">
+        <div>
+          <h3 id={titleId} className="font-heading font-semibold text-xl leading-snug tracking-tight text-[var(--text-primary)]">{project.name}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">{project.summary}</p>
+        </div>
+
+        <ul className="flex flex-wrap gap-2" aria-label={labels.tech}>
+          {project.tech.map(tech => <li key={tech} className="chip">{tech}</li>)}
+        </ul>
+
+        {(project.website || project.alternateWebsite || project.repository) && (
+          <div className="project-actions">
+            {[project.website, project.alternateWebsite].filter(Boolean).map(url => (
+              <a key={url} href={url} target="_blank" rel="noopener noreferrer" className="project-action">
+                <ExternalLink size={14} aria-hidden="true" />
+                {labels.visitWebsite} · {new URL(url).hostname}
+              </a>
+            ))}
+            {project.repository && (
+              <a href={project.repository} target="_blank" rel="noopener noreferrer" className="project-action">
+                <Github size={14} aria-hidden="true" />{labels.repository}
+              </a>
+            )}
+          </div>
+        )}
+
+        <details className="project-case group">
+          <summary aria-label={`${labels.details}: ${project.name}`} className="project-case-summary">
+            {labels.details}
+            <ChevronDown size={16} aria-hidden="true" className="shrink-0 transition-transform group-open:rotate-180" />
+          </summary>
+          <div className="project-case-content">
+            <section>
+              <h4>{labels.problem}</h4>
+              <p>{project.problem}</p>
+            </section>
+            <section>
+              <h4>{labels.solution}</h4>
+              <p>{project.desc}</p>
+              <ul>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+            </section>
+            <section>
+              <h4>{labels.participation}</h4>
+              <p>{project.participation}</p>
+            </section>
+            <section>
+              <h4>{labels.result}</h4>
+              <p>{project.impact}</p>
+            </section>
+          </div>
+        </details>
+      </div>
+    </article>
+  );
+};
 
 const Projects = () => {
   const { t } = useLang();
   const list = t("projects.list");
   const labels = t("projects.labels");
+  const [showMore, setShowMore] = useState(false);
+  const projects = Array.isArray(list) ? list : [];
+  const featured = projects.filter(project => project.featured);
+  const additional = projects.filter(project => !project.featured);
 
   return (
-    <section
-      id="projects"
-      data-testid="projects-section"
-      className="section-y relative bg-[var(--surface)] border-y border-[var(--border)]"
-    >
+    <section id="projects" data-testid="projects-section" className="section-y relative bg-[var(--surface)] border-y border-[var(--border)]">
       <div className="container-x">
-        <SectionHeader
-          overline={t("projects.overline")}
-          title={t("projects.title")}
-          lead={t("projects.lead")}
-        />
+        <SectionHeader overline={t("projects.overline")} title={t("projects.title")} lead={t("projects.lead")} />
 
-        <div className="mt-16 space-y-8">
-          {Array.isArray(list) &&
-            list.map((p, i) => {
-              const Mock = PROJECT_MOCKS[i];
-              const reverse = i % 2 === 1;
-              const Preview = p.website ? "a" : "div";
-              return (
-                <motion.article
-                  key={i}
-                  data-testid={`project-card-${i}`}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.6 }}
-                  className="card-tech card-project grid lg:grid-cols-12 gap-0 overflow-hidden group"
-                >
-                  <Preview
-                    {...(p.website ? {
-                      href: p.website,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      "aria-label": `${labels.visitWebsite}: ${p.name}`,
-                    } : {})}
-                    className={`lg:col-span-6 relative ${
-                      reverse ? "lg:order-2" : "lg:order-1"
-                    } aspect-[16/11] lg:aspect-auto bg-[var(--surface-alt)] border-b lg:border-b-0 ${
-                      reverse ? "lg:border-l" : "lg:border-r"
-                    } border-[var(--border)] overflow-hidden`}
-                  >
-                    {Mock ? <Mock /> : null}
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 bg-[var(--project-label-bg)] backdrop-blur border border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
-                      <span className="w-1.5 h-1.5 bg-[var(--accent)]" />
-                      {labels.project} · {String(i + 1).padStart(2, "0")} / {list.length}
-                    </div>
-                  </Preview>
-
-                  <div
-                    className={`lg:col-span-6 ${
-                      reverse ? "lg:order-1" : "lg:order-2"
-                    } p-7 md:p-10 lg:p-12 flex flex-col`}
-                  >
-                    <p className="overline mb-3">{p.subtitle}</p>
-                    <h3 className="font-heading font-bold text-2xl md:text-3xl text-[var(--text-primary)] leading-tight mb-4 tracking-tight">
-                      {p.website ? (
-                        <a href={p.website} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">
-                          {p.name}
-                        </a>
-                      ) : p.name}
-                    </h3>
-                    <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
-                      {p.desc}
-                    </p>
-
-                    {p.website && (
-                      <div className="flex flex-wrap gap-3 mb-6">
-                        <a href={p.website} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                          <ExternalLink size={16} aria-hidden="true" /> vincco.com
-                        </a>
-                        {p.alternateWebsite && (
-                          <a href={p.alternateWebsite} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                            <ExternalLink size={16} aria-hidden="true" /> vincco.mx
-                          </a>
-                        )}
-                        {p.repository && (
-                          <a href={p.repository} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                            <Github size={16} aria-hidden="true" /> {labels.repository}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    <div className="mb-6">
-                      <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)] flex items-center gap-2 mb-2">
-                        <Code2 size={11} /> {labels.tech}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {p.tech.map((tt, j) => (
-                          <span
-                            key={j}
-                            className="font-mono text-[11px] rounded-md px-2 py-1 bg-[var(--surface-alt)] border border-[var(--border)] text-[var(--text-primary)]"
-                          >
-                            {tt}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-5 mb-6">
-                      <div>
-                        <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)] flex items-center gap-2 mb-2">
-                          <ListChecks size={11} /> {labels.features}
-                        </p>
-                        <ul className="space-y-1.5">
-                          {p.features.map((f, j) => (
-                            <li
-                              key={j}
-                              className="text-sm text-[var(--text-secondary)] leading-snug pl-3 relative before:content-['›'] before:absolute before:left-0 before:text-[var(--accent)] before:font-mono"
-                            >
-                              {f}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="space-y-4">
-                        <div>
-                          <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-secondary)] flex items-center gap-2 mb-2">
-                            <Target size={11} /> {labels.problem}
-                          </p>
-                          <p className="text-sm text-[var(--text-primary)] leading-snug">
-                            {p.problem}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--accent)] flex items-center gap-2 mb-2">
-                            <Sparkles size={11} /> {labels.impact}
-                          </p>
-                          <p className="text-sm text-[var(--text-primary)] leading-snug font-medium">
-                            {p.impact}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.article>
-              );
-            })}
+        <div className="project-grid mt-10" data-testid="featured-projects">
+          {featured.map(project => <ProjectCard key={project.id} project={project} labels={labels} />)}
         </div>
+
+        {additional.length > 0 && (
+          <>
+            <div className="mt-8">
+              <button type="button" className="btn-secondary" onClick={() => setShowMore(value => !value)} aria-expanded={showMore} aria-controls="additional-projects">
+                {showMore ? labels.less : labels.more}
+                <ChevronDown size={16} aria-hidden="true" className={`transition-transform ${showMore ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+            <div id="additional-projects" hidden={!showMore}>
+              <div className="project-grid mt-8">
+                {additional.map(project => <ProjectCard key={project.id} project={project} labels={labels} />)}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
